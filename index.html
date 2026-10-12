@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aethoria — Universe of Legends</title>
+<meta name="description" content="Aethoria is a vast epic fantasy universe where factions like the Sonic Legion fight for the fate of the world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#07060f;
+  --night:#0d0b1f;
+  --indigo:#1a1540;
+  --violet:#3b2a7a;
+  --gold:#e6c36a;
+  --gold-deep:#b8903a;
+  --ember:#ff8a3d;
+  --sonic:#5fd4ff;
+  --sonic-deep:#2a7de1;
+  --parchment:#e9dfc7;
+  --mist:#a99fc9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);
+  color:var(--parchment);
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:1.2rem;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.cinzel{font-family:'Cinzel',serif;letter-spacing:.08em}
+a{color:inherit;text-decoration:none}
+
+/* ---------- NAV ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 6vw;
+  background:linear-gradient(to bottom,rgba(7,6,15,.9),rgba(7,6,15,0));
+  backdrop-filter:blur(3px);
+}
+.logo{font-family:'Cinzel Decorative',serif;font-weight:700;font-size:1.5rem;color:var(--gold);letter-spacing:.2em;text-shadow:0 0 18px rgba(230,195,106,.5)}
+nav ul{display:flex;gap:2.2rem;list-style:none}
+nav ul a{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--parchment);opacity:.8;transition:.3s;position:relative}
+nav ul a:hover{opacity:1;color:var(--gold)}
+nav ul a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--gold);transition:.3s}
+nav ul a:hover::after{width:100%}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:0 6vw;
+  background:radial-gradient(ellipse at 50% 30%,#2b1d63 0%,#140f33 45%,var(--void) 80%);
+  overflow:hidden;
+}
+#stars{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-scene{position:absolute;left:0;right:0;bottom:0;width:100%;height:60%;z-index:1;pointer-events:none}
+.moon{
+  position:absolute;top:12%;right:14%;width:clamp(90px,14vw,190px);aspect-ratio:1;border-radius:50%;z-index:1;
+  background:radial-gradient(circle at 35% 35%,#fff7dc,#e6c36a 55%,#8a6a22 100%);
+  box-shadow:0 0 60px 20px rgba(230,195,106,.35),0 0 160px 60px rgba(230,195,106,.15);
+  animation:float 9s ease-in-out infinite;
+}
+.moon.small{top:26%;left:12%;right:auto;width:clamp(40px,6vw,80px);background:radial-gradient(circle at 35% 35%,#e8f6ff,#5fd4ff 60%,#1b4f7a);box-shadow:0 0 40px 10px rgba(95,212,255,.3);animation-delay:-4s}
+@keyframes float{50%{transform:translateY(-14px)}}
+.hero-content{position:relative;z-index:2;max-width:900px;margin-top:6vh}
+.eyebrow{font-family:'Cinzel',serif;color:var(--sonic);letter-spacing:.5em;font-size:.8rem;text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:rise 1.6s .3s forwards}
+.hero h1{
+  font-family:'Cinzel Decorative',serif;font-weight:900;
+  font-size:clamp(3rem,12vw,9rem);line-height:1;letter-spacing:.12em;
+  background:linear-gradient(180deg,#fff3c4 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 28px rgba(230,195,106,.45));
+  opacity:0;animation:rise 1.8s .6s forwards;
+}
+.tagline{font-style:italic;font-size:clamp(1.15rem,2.4vw,1.7rem);color:var(--mist);margin:1.6rem auto 2.6rem;max-width:640px;opacity:0;animation:rise 1.8s 1s forwards}
+.cta-row{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:rise 1.8s 1.3s forwards}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.btn{
+  font-family:'Cinzel',serif;font-weight:600;font-size:.9rem;letter-spacing:.25em;text-transform:uppercase;
+  padding:16px 38px;border:1px solid var(--gold);color:var(--gold);position:relative;transition:.35s;
+  clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);
+  background:rgba(230,195,106,.06);
+}
+.btn:hover{background:var(--gold);color:var(--void);box-shadow:0 0 30px rgba(230,195,106,.6)}
+.btn.sonic{border-color:var(--sonic);color:var(--sonic);background:rgba(95,212,255,.06)}
+.btn.sonic:hover{background:var(--sonic);color:var(--void);box-shadow:0 0 30px rgba(95,212,255,.6)}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.4em;color:var(--gold);opacity:.7;animation:pulse 2.4s infinite}
+@keyframes pulse{50%{opacity:.25}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:120px 6vw;position:relative}
+.wrap{max-width:1150px;margin:0 auto}
+.divider{display:flex;align-items:center;justify-content:center;gap:18px;margin-bottom:1.4rem}
+.divider::before,.divider::after{content:'';height:1px;width:90px;background:linear-gradient(90deg,transparent,var(--gold))}
+.divider::after{transform:scaleX(-1)}
+.divider span{width:10px;height:10px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 14px var(--gold)}
+h2.title{font-family:'Cinzel Decorative',serif;font-size:clamp(2rem,5vw,3.4rem);text-align:center;color:var(--gold);margin-bottom:1rem;text-shadow:0 0 24px rgba(230,195,106,.3)}
+.sub{text-align:center;color:var(--mist);font-style:italic;max-width:680px;margin:0 auto 4rem}
+
+/* universe */
+.universe{background:linear-gradient(to bottom,var(--void),var(--night))}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
+.pillar{
+  padding:2.4rem 2rem;text-align:center;
+  background:linear-gradient(160deg,rgba(59,42,122,.28),rgba(13,11,31,.7));
+  border:1px solid rgba(230,195,106,.25);position:relative;transition:.4s;
+}
+.pillar::before,.pillar::after{content:'';position:absolute;width:18px;height:18px;border:2px solid var(--gold)}
+.pillar::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.pillar::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.pillar:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 20px 50px rgba(0,0,0,.6),0 0 40px rgba(230,195,106,.15)}
+.pillar svg{width:76px;height:76px;margin-bottom:1.2rem}
+.pillar h3{color:var(--gold);font-size:1.2rem;margin-bottom:.7rem}
+.pillar p{font-size:1.08rem;color:var(--parchment);opacity:.85}
+
+/* factions */
+.factions{background:var(--night)}
+.faction-feature{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;
+  border:1px solid rgba(95,212,255,.35);
+  background:linear-gradient(135deg,#0a1530,#0d0b1f 60%);
+  box-shadow:0 0 80px rgba(42,125,225,.18);
+  overflow:hidden;
+}
+.emblem-pane{
+  position:relative;min-height:440px;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 50%,rgba(95,212,255,.25),transparent 65%),#081027;
+}
+.emblem-pane svg{width:min(86%,420px);height:auto;filter:drop-shadow(0 0 25px rgba(95,212,255,.6))}
+.ring{transform-origin:200px 200px;animation:spin 40s linear infinite}
+.ring2{transform-origin:200px 200px;animation:spin 60s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wave{animation:wavepulse 3s ease-in-out infinite;transform-origin:200px 200px}
+.wave:nth-of-type(2){animation-delay:.4s}
+.wave:nth-of-type(3){animation-delay:.8s}
+@keyframes wavepulse{50%{opacity:.25}}
+.faction-info{padding:3.2rem 3rem}
+.tag{display:inline-block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.35em;color:var(--sonic);border:1px solid var(--sonic);padding:4px 14px;margin-bottom:1.2rem;text-transform:uppercase}
+.faction-info h3{font-family:'Cinzel Decorative',serif;font-size:clamp(1.9rem,4vw,3rem);color:#fff;margin-bottom:.4rem;text-shadow:0 0 22px rgba(95,212,255,.6)}
+.motto{font-style:italic;color:var(--sonic);margin-bottom:1.4rem;font-size:1.25rem}
+.faction-info p{margin-bottom:1.2rem;opacity:.9}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem}
+.stat{border-top:2px solid var(--sonic);padding-top:.7rem}
+.stat b{font-family:'Cinzel',serif;display:block;font-size:.72rem;letter-spacing:.25em;color:var(--mist);text-transform:uppercase}
+.stat span{font-family:'Cinzel',serif;font-size:1.1rem;color:#fff}
+
+.other-factions{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.6rem;margin-top:2.4rem}
+.fcard{
+  padding:2rem 1.6rem;border:1px dashed rgba(169,159,201,.4);text-align:center;
+  background:rgba(26,21,64,.4);transition:.4s;
+}
+.fcard:hover{border-style:solid;border-color:var(--gold);background:rgba(59,42,122,.35)}
+.fcard h4{color:var(--gold);font-size:1.05rem;margin-bottom:.5rem}
+.fcard p{font-size:1rem;opacity:.7;font-style:italic}
+
+/* lore */
+.lore{
+  background:
+   linear-gradient(to bottom,var(--night),rgba(13,11,31,.82),var(--void)),
+   radial-gradient(ellipse at 50% 0%,#2b1d63,transparent 70%);
+}
+.timeline{position:relative;max-width:820px;margin:0 auto}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
+.era{position:relative;width:50%;padding:0 3rem 3.4rem 0;text-align:right}
+.era:nth-child(even){margin-left:50%;padding:0 0 3.4rem 3rem;text-align:left}
+.era::after{content:'';position:absolute;top:.6rem;right:-7px;width:13px;height:13px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 16px var(--gold)}
+.era:nth-child(even)::after{right:auto;left:-6px}
+.era h4{color:var(--gold);font-size:1.15rem;margin-bottom:.3rem}
+.era small{font-family:'Cinzel',serif;letter-spacing:.3em;color:var(--sonic);font-size:.7rem;text-transform:uppercase}
+.era p{opacity:.85;font-size:1.08rem;margin-top:.4rem}
+
+/* cta */
+.join{text-align:center;background:radial-gradient(ellipse at 50% 100%,rgba(95,212,255,.15),transparent 60%),var(--void)}
+.join p{max-width:620px;margin:0 auto 2.4rem;color:var(--mist);font-style:italic}
+
+footer{padding:50px 6vw;text-align:center;border-top:1px solid rgba(230,195,106,.2);background:#05040b;font-size:.95rem;color:var(--mist)}
+footer .logo{display:block;margin-bottom:.8rem;font-size:1.3rem}
+
+.reveal{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.2,.7,.2,1)}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:860px){
+  nav ul{display:none}
+  .faction-feature{grid-template-columns:1fr}
+  .emblem-pane{min-height:320px}
+  .faction-info{padding:2.2rem 1.6rem}
+  .timeline::before{left:12px}
+  .era,.era:nth-child(even){width:100%;margin-left:0;padding:0 0 2.6rem 2.6rem;text-align:left}
+  .era::after,.era:nth-child(even)::after{left:6px;right:auto}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+  section{padding:90px 6vw}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="logo">AETHORIA</a>
+  <ul>
+    <li><a href="#universe">Universe</a></li>
+    <li><a href="#factions">Factions</a></li>
+    <li><a href="#lore">Chronicles</a></li>
+    <li><a href="#join">Join</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <canvas id="stars"></canvas>
+  <div class="moon"></div>
+  <div class="moon small"></div>
+
+  <!-- landscape -->
+  <svg class="hero-scene" viewBox="0 0 1440 520" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="m1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2a7a"/><stop offset="1" stop-color="#150f33"/></linearGradient>
+      <linearGradient id="m2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#241a56"/><stop offset="1" stop-color="#0d0b1f"/></linearGradient>
+      <linearGradient id="m3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#120d2c"/><stop offset="1" stop-color="#07060f"/></linearGradient>
+      <linearGradient id="isl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a3a8c"/><stop offset="1" stop-color="#1a1540"/></linearGradient>
+      <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e6c36a" stop-opacity=".55"/><stop offset="1" stop-color="#e6c36a" stop-opacity="0"/></radialGradient>
+    </defs>
+    <!-- far mountains -->
+    <path fill="url(#m1)" d="M0 330 L120 230 L210 300 L330 170 L450 290 L560 210 L690 320 L810 190 L930 300 L1040 220 L1180 310 L1300 200 L1440 300 L1440 520 L0 520Z" opacity=".85"/>
+    <!-- floating islands -->
+    <g>
+      <g transform="translate(250 130)">
+        <animateTransform attributeName="transform" type="translate" values="250 130;250 118;250 130" dur="8s" repeatCount="indefinite"/>
+        <ellipse cx="0" cy="-6" rx="70" ry="14" fill="url(#isl)"/>
+        <path d="M-70 -6 Q-40 60 0 90 Q40 60 70 -6Z" fill="#1a1540"/>
+        <path d="M-30 -14 L-22 -48 L-14 -14Z M-8 -14 L2 -66 L12 -14Z" fill="#e6c36a" opacity=".9"/>
+        <circle cx="2" cy="-70" r="26" fill="url(#glow)"/>
+      </g>
+      <g transform="translate(1130 90)">
+        <animateTransform attributeName="transform" type="translate" values="1130 90;1130 104;1130 90" dur="10s" repeatCount="indefinite"/>
+        <ellipse cx="0" cy="-4" rx="55" ry="11" fill="url(#isl)"/>
+        <path d="M-55 -4 Q-30 50 0 70 Q30 50 55 -4Z" fill="#1a1540"/>
+        <path d="M-10 -10 L0 -46 L10 -10Z" fill="#5fd4ff" opacity=".9"/>
+        <circle cx="0" cy="-48" r="22" fill="#5fd4ff" opacity=".18"/>
+      </g>
+    </g>
+    <!-- mid mountains -->
+    <path fill="url(#m2)" d="M0 400 L100 330 L220 390 L360 290 L500 380 L640 310 L780 400 L920 300 L1060 390 L1200 320 L1340 390 L1440 340 L1440 520 L0 520Z"/>
+    <!-- castle -->
+    <g transform="translate(700 295)" fill="#0b0820">
+      <rect x="-50" y="20" width="100" height="70"/>
+      <rect x="-70" y="40" width="26" height="50"/><rect x="44" y="40" width="26" height="50"/>
+      <path d="M-70 40 L-57 6 L-44 40Z M44 40 L57 6 L70 40Z M-18 20 L0 -50 L18 20Z"/>
+      <rect x="-26" y="10" width="10" height="10"/><rect x="16" y="10" width="10" height="10"/>
+      <rect x="-3" y="48" width="6" height="14" fill="#e6c36a"/>
+      <rect x="-60" y="62" width="5" height="9" fill="#e6c36a"/><rect x="55" y="62" width="5" height="9" fill="#e6c36a"/>
+      <circle cx="0" cy="-54" r="3" fill="#e6c36a"/>
+    </g>
+    <!-- foreground -->
+    <path fill="url(#m3)" d="M0 470 L150 400 L290 460 L440 410 L600 470 L760 430 L920 480 L1080 420 L1240 470 L1440 410 L1440 520 L0 520Z"/>
+    <!-- pines -->
+    <g fill="#05040b">
+      <path d="M60 520 L90 410 L120 520Z"/><path d="M110 520 L135 440 L160 520Z"/>
+      <path d="M1280 520 L1315 400 L1350 520Z"/><path d="M1340 520 L1365 440 L1390 520Z"/><path d="M1230 520 L1255 455 L1280 520Z"/>
+    </g>
+  </svg>
+
+  <div class="hero-content">
+    <div class="eyebrow">One Universe • Endless Legends</div>
+    <h1>AETHORIA</h1>
+    <p class="tagline">Where the stars sing prophecy, and every faction writes the fate of a world.</p>
+    <div class="cta-row">
+      <a href="#universe" class="btn">Explore the Universe</a>
+      <a href="#factions" class="btn sonic">Sonic Legion</a>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL DOWN ▾</div>
+</header>
+
+<!-- UNIVERSE -->
+<section class="universe" id="universe">
+  <div class="wrap">
+    <div class="divider"><span></span></div>
+    <h2 class="title reveal">The Aethoria Universe</h2>
+    <p class="sub reveal">As Aether, the primordial energy, flows through the drifting continents, empires rise, heroes fall, and legends are born.</p>
+
+    <div class="pillars">
+      <div class="pillar reveal">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#e6c36a" stroke-width="2.5"><path d="M50 8 L88 30 V70 L50 92 L12 70 V30Z"/><path d="M50 26 L72 38 V62 L50 74 L28 62 V38Z" opacity=".6"/><circle cx="50" cy="50" r="6" fill="#e6c36a"/></svg>
+        <h3>Primordial Aether</h3>
+        <p>The ancient energy that feeds magic, forged steel, and the soul of every living being in the universe.</p>
+      </div>
+      <div class="pillar reveal">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#e6c36a" stroke-width="2.5"><path d="M10 80 L35 35 L52 62 L68 28 L92 80Z"/><circle cx="76" cy="18" r="7"/><path d="M4 90 H96" opacity=".5"/></svg>
+        <h3>Floating Continents</h3>
+        <p>Colossal islands adrift among the clouds, linked by bridges of light and roads of wind.</p>
+      </div>
+      <div class="pillar reveal">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#e6c36a" stroke-width="2.5"><path d="M50 8 L58 40 L92 50 L58 60 L50 92 L42 60 L8 50 L42 40Z"/><circle cx="50" cy="50" r="10" opacity=".6"/></svg>
+        <h3>The Factions</h3>
+        <p>Each faction holds a shard of Aether's power, and an ideal it will gladly trade blood for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACTIONS -->
+<section class="factions" id="factions">
+  <div class="wrap">
+    <div class="divider"><span></span></div>
+    <h2 class="title reveal">Factions</h2>
+    <p class="sub reveal">The powers that shape the course of Aethoria's history.</p>
+
+    <div class="faction-feature reveal">
+      <div class="emblem-pane">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="wing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8f6ff"/><stop offset="1" stop-color="#2a7de1"/></linearGradient>
+            <radialGradient id="core" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#5fd4ff"/><stop offset="1" stop-color="#2a7de1" stop-opacity="0"/></radialGradient>
+          </defs>
+          <g class="ring" fill="none" stroke="#5fd4ff" stroke-width="1.5">
+            <circle cx="200" cy="200" r="185" stroke-dasharray="3 9"/>
+            <circle cx="200" cy="200" r="170"/>
+          </g>
+          <g class="ring2" fill="#5fd4ff" font-family="Cinzel,serif" font-size="13" letter-spacing="6">
+            <circle cx="200" cy="30" r="4"/><circle cx="370" cy="200" r="4"/><circle cx="200" cy="370" r="4"/><circle cx="30" cy="200" r="4"/>
+          </g>
+          <!-- sound waves -->
+          <g fill="none" stroke="#5fd4ff" stroke-width="2.5" stroke-linecap="round">
+            <circle class="wave" cx="200" cy="200" r="62" opacity=".9"/>
+            <circle class="wave" cx="200" cy="200" r="86" opacity=".6"/>
+            <circle class="wave" cx="200" cy="200" r="112" opacity=".35"/>
+          </g>
+          <!-- wings -->
+          <g fill="url(#wing)" stroke="#fff" stroke-width="1.2" stroke-linejoin="round">
+            <path d="M192 190 L110 120 L40 112 L88 148 L30 160 L84 186 L40 212 L110 214 L90 244 L170 232Z"/>
+            <path d="M208 190 L290 120 L360 112 L312 148 L370 160 L316 186 L360 212 L290 214 L310 244 L230 232Z"/>
+          </g>
+          <!-- blade -->
+          <path d="M200 70 L218 230 L200 310 L182 230Z" fill="#0a1530" stroke="#e6c36a" stroke-width="2.5"/>
+          <path d="M200 90 L208 230 L200 290 L192 230Z" fill="#5fd4ff" opacity=".55"/>
+          <rect x="168" y="228" width="64" height="9" rx="2" fill="#e6c36a"/>
+          <circle cx="200" cy="200" r="22" fill="url(#core)"/>
+          <circle cx="200" cy="200" r="7" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="faction-info">
+        <span class="tag">Featured Faction</span>
+        <h3>Sonic Legion</h3>
+        <p class="motto">“Our echo is the death knell of our enemies.”</p>
+        <p>The Sonic Legion is an elite army of resonance warriors. They learned to command the vibrations of Aether, turning sound into weapon, shield, and a speed beyond any creature under the heavens.</p>
+        <p>When the Legion marches, the war horns sound before their shadows appear. And when the horns reach the ramparts, even stone walls tremble.</p>
+        <div class="stats">
+          <div class="stat"><b>Element</b><span>Resonance</span></div>
+          <div class="stat"><b>Specialty</b><span>Speed</span></div>
+          <div class="stat"><b>Emblem</b><span>Wings &amp; Waves</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="other-factions">
+      <div class="fcard reveal"><h4>Unknown Faction I</h4><p>Awaiting its name in the chronicles…</p></div>
+      <div class="fcard reveal"><h4>Unknown Faction II</h4><p>Darkness gathers on the horizon…</p></div>
+      <div class="fcard reveal"><h4>Unknown Faction III</h4><p>A prophecy yet to be deciphered…</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LORE -->
+<section class="lore" id="lore">
+  <div class="wrap">
+    <div class="divider"><span></span></div>
+    <h2 class="title reveal">Chronicles</h2>
+    <p class="sub reveal">The first milestones in the history of Aethoria.</p>
+    <div class="timeline">
+      <div class="era reveal"><small>Age I</small><h4>The First Song</h4><p>Aether awakens, and the stars raise the first song of creation.</p></div>
+      <div class="era reveal"><small>Age II</small><h4>The Age of Sky Isles</h4><p>The continents leave the ground and rise among the clouds.</p></div>
+      <div class="era reveal"><small>Age III</small><h4>The Shattering War</h4><p>Aether breaks into many shards, and factions arise to fight over them.</p></div>
+      <div class="era reveal"><small>Age IV</small><h4>The Rise of the Sonic Legion</h4><p>The resonance army sounds its war horns for the first time, and the world is never the same.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join" id="join">
+  <div class="wrap">
+    <div class="divider"><span></span></div>
+    <h2 class="title reveal">Choose Your Side</h2>
+    <p class="reveal">The gates of Aethoria stand open. Step through, and let your echo be carved into history.</p>
+    <div class="cta-row reveal" style="opacity:1;animation:none">
+      <a href="#" class="btn">Enter Aethoria</a>
+      <a href="#factions" class="btn sonic">Join the Sonic Legion</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="logo">AETHORIA</span>
+  © <span id="yr"></span> Aethoria Universe · The Sonic Legion is a faction within the Aethoria universe.
+</footer>
+
+<script>
+// starfield
+(function(){
+  const c=document.getElementById('stars'),x=c.getContext('2d');
+  let w,h,stars=[];
+  function init(){
+    w=c.width=c.offsetWidth;h=c.height=c.offsetHeight;
+    stars=Array.from({length:Math.floor(w*h/4500)},()=>({
+      x:Math.random()*w,y:Math.random()*h*.8,r:Math.random()*1.4+.2,
+      p:Math.random()*Math.PI*2,s:Math.random()*.02+.005,
+      c:Math.random()<.15?'95,212,255':'255,244,210'
+    }));
+  }
+  function draw(t){
+    x.clearRect(0,0,w,h);
+    stars.forEach(s=>{
+      const a=.4+.6*Math.abs(Math.sin(s.p+t*s.s*.1));
+      x.fillStyle='rgba('+s.c+','+a+')';
+      x.beginPath();x.arc(s.x,s.y,s.r,0,6.283);x.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  addEventListener('resize',init);init();requestAnimationFrame(draw);
+})();
+
+// scroll reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
