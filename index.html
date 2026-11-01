@@ -113,11 +113,18 @@
     /* World */
     .world-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 58px; align-items: center; }
     .map-art {
-      min-height: 390px; position: relative; overflow: hidden; border: 1px solid var(--line);
-      background:
-        linear-gradient(rgba(21,18,13,.2), rgba(21,18,13,.45)),
-        url("https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1300&q=80") center/cover;
-      display: grid; place-items: center;
+    min-height: 390px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(rgba(21,18,13,.10), rgba(21,18,13,.10)),
+        url("images/aethoria-map.png") center/contain no-repeat;
+
+    background-color: #d8c8a8;
+    display: grid;
+    place-items: center;
     }
     .map-art::before { content: "MAP OF AETHORIA"; color: rgba(242,220,177,.88); font: 500 clamp(20px,3vw,32px) var(--display); letter-spacing: .16em; text-shadow: 0 2px 15px #000; }
     .map-art::after { content: "Replace this image with your illustrated world map"; position: absolute; bottom: 16px; color: rgba(255,255,255,.7); font-size: 14px; }
